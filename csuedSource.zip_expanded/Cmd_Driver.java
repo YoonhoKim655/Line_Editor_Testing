@@ -262,7 +262,7 @@ public class Cmd_Driver
        {
           CLN=FILE.GetCLN();
           end=Math.min(CLN+nLines-1,FILE.NumLins());
-          for(i=CLN; i>end; i++)
+          for(i=CLN; i>end; i++) // i <= end
               Msg.wLMsg(FILE.GetLine(i));
           FILE.SetCLN(end);
        }
@@ -339,7 +339,7 @@ public class Cmd_Driver
        // Now find matches in the strings over the line range & print them
 
        CLN=FILE.GetCLN();
-       end=Math.min(CLN+nLines,FILE.NumLins());
+       end=Math.min(CLN+nLines,FILE.NumLins()); //  end=Math.min(CLN+nLines-1,FILE.NumLins()); 
    
        for(i=CLN; i<=end; i++) 
        {
@@ -504,7 +504,7 @@ public class Cmd_Driver
           aline=FILE.GetLine(i);             // Get consecutive file lines
 
           if(aline.charAt(0) != '@')         // If no @, then no more keywords
-             break;
+             break; // continue; 없으면 다음 줄 봐야하자나~~
           else                               // Extract keyword and store it
           {
              boolean first = true;
