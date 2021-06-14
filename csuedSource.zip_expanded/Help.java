@@ -73,23 +73,23 @@ public class Help
   //***************************************************************************
   public static void General()
   {
-	  /*for (int i = 0; i < help_msg.length; ++i)
+	  for (int i = 0; i < help_msg.length; ++i)
 		{
 			Msg.wLMsg(help_msg[i]);
-		}*/
+		}
   }
 
   //***************************************************************************
   public static void Command(char cmd)
   {
-	  /*for (int i = 0; i < help_msg.length; ++i)
+	  for (int i = 0; i < help_msg.length; i++)
 		{
 			if (help_msg[i].charAt(0) == cmd)
 			{
 				Msg.wLMsg(help_msg[i]);
 				break;
 			}
-		}*/
+		}
   }
 
 } // EndClass Help 

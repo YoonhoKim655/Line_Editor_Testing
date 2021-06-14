@@ -64,7 +64,7 @@ public class Init_Exit
           if(Nlines == 0)                    // File nulled if NO Buff lines!
              Msg.ERROR(2);
           else                               // Rewrite file with all buff lines.
-             for(i=1; i<Nlines; i++)
+             for(i=1; i<=Nlines; i++) //i<Nlines이라면, 마지막줄을 제외하는 것이므로 i<=Nlines가 맞음
                  editFile.writeln(FILE.GetLine(i));
 
           editFile.close();

@@ -262,7 +262,7 @@ public class Cmd_Driver
        {
           CLN=FILE.GetCLN();
           end=Math.min(CLN+nLines-1,FILE.NumLins());
-          for(i=CLN; i>end; i++) // i <= end
+          for(i=CLN; i<=end; i++) //조건식이 i>end였고, i는 end보다 항상 작거나 같기에 실행이 안된다.
               Msg.wLMsg(FILE.GetLine(i));
           FILE.SetCLN(end);
        }
@@ -276,7 +276,8 @@ public class Cmd_Driver
        if(Valid_Lines(FILE,nLines)) 
        {
           CLN=FILE.GetCLN();
-          end=Math.min(CLN,FILE.NumLins());
+          end=Math.min(CLN+nLines-1,FILE.NumLins());
+          //end=Math.min(CLN,FILE.NumLins())이었을 때는 총 줄의 수에서 CLN만을 빼서 한 번만 출력이 됩니다.
           for(i=CLN; i<=end; i++)
               Msg.wLMsg(FILE.GetLine(i));
        }
@@ -339,7 +340,8 @@ public class Cmd_Driver
        // Now find matches in the strings over the line range & print them
 
        CLN=FILE.GetCLN();
-       end=Math.min(CLN+nLines,FILE.NumLins()); //  end=Math.min(CLN+nLines-1,FILE.NumLins()); 
+       end=Math.min(CLN+nLines-1,FILE.NumLins());
+       //end=Math.min(CLN+nLines,FILE.NumLins())일 때, 원했던 조건보다 하나 더 추가가 된다. 
    
        for(i=CLN; i<=end; i++) 
        {
@@ -391,7 +393,7 @@ public class Cmd_Driver
 
           // Start match & replace loop: continue so long as have matches
 
-          while(matchpos <= 0) //Error, matchpos >= 0, this is correct
+          while(matchpos >= 0) //Error, matchpos >= 0, this is correct
           {
              matches = true;                        // Found match
 
@@ -654,7 +656,7 @@ public class Cmd_Driver
 
    public void Cmd_M(int M_left, int M_right)
    {
-       if((M_left <= 0) && (M_right <= 0))
+       if((M_left <= 0) || (M_right <= 0))
           Msg.ERROR(10);
        else if(M_left > M_right)
           Msg.ERROR(11);
